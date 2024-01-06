@@ -46,7 +46,7 @@ class LandingPage extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => SignUpScreen()),
                 );
               },
-              child: Text('Sign In', style:TextStyle(color: Colors.red[600],)),
+              child: Text('Sign In', style:TextStyle(color: Colors.red[500],)),
 
             ),
           ],
