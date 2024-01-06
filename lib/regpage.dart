@@ -86,7 +86,7 @@ class SignInScreen extends StatelessWidget {
               obscureText: true,
             ),
 
-            SizedBox(height: 25.0),
+            SizedBox(height: 24.0),
             ElevatedButton(
               onPressed: () {
                 // Implement registration logic
