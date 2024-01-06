@@ -76,7 +76,7 @@ class SignInScreen extends StatelessWidget {
               ),
               keyboardType: TextInputType.datetime,
             ),
-            SizedBox(height: 12.0),
+            SizedBox(height: 15.0),
             TextFormField(
               decoration: InputDecoration(
                 icon: Icon(Icons.lock),
