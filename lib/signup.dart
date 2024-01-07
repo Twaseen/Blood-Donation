@@ -51,13 +51,7 @@ class SignUpScreen extends StatelessWidget {
               child: Text('Sign In'),
             ),
             SizedBox(height: 12.0),
-            //TextButton(
-            // onPressed: () {
-            // Navigate back to sign-in screen
-            //  Navigator.pop(context);
-            // },
-            // child: Text('Already have an account? Sign In'),
-            //),
+
           ],
         ),
       ),

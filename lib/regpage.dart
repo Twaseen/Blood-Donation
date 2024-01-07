@@ -97,6 +97,10 @@ class SignInScreen extends StatelessWidget {
             SizedBox(height: 12.0),
             TextButton(
               onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SignUpScreen()),
+                );
                 // Navigate to login screen
               },
               child: Text('Already have an account? Login'),
