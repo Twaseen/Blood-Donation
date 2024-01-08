@@ -1,10 +1,12 @@
 import 'package:final_app/authentication_repository.dart';
 import 'package:final_app/firebase_options.dart';
+import 'package:final_app/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:final_app/splash_screen.dart';
 import '1stpage.dart';
 import 'package:get/get.dart';
+import 'package:final_app/theme.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,9 +24,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Blood Bank ',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(brightness: Brightness.light),
-      darkTheme: ThemeData(brightness: Brightness.dark),
-      themeMode: ThemeMode.light,
+      theme: AppTheme.lighttheme,
+      darkTheme: AppTheme.darktheme,
+      themeMode: ThemeMode.system ,
       home: SplashScreen(),
     );
   }

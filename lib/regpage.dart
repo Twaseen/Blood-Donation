@@ -2,7 +2,6 @@ import 'package:final_app/signup.dart';
 import 'package:final_app/signup_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'signup_controller.dart';
 
 void main() {
   runApp(BloodBankApp());
@@ -49,7 +48,7 @@ class SignInScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 20.0),
+              SizedBox(height: 12.0),
               TextFormField(
                 controller: controller.FullName,
                 decoration: const InputDecoration(
@@ -58,7 +57,7 @@ class SignInScreen extends StatelessWidget {
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 20.0),
+              SizedBox(height: 12.0),
               TextFormField(
                 controller: controller.BloodGroup,
                 decoration: InputDecoration(
@@ -87,7 +86,7 @@ class SignInScreen extends StatelessWidget {
                 ),
                 keyboardType: TextInputType.datetime,
               ),
-              SizedBox(height: 15.0),
+              SizedBox(height: 12.0),
               TextFormField(
                 controller: controller.Email,
                 decoration: InputDecoration(
@@ -97,7 +96,7 @@ class SignInScreen extends StatelessWidget {
                 ),
                 obscureText: true,
               ),
-              SizedBox(height: 15.0),
+              SizedBox(height: 12.0),
               TextFormField(
                 controller: controller.Password,
                 decoration: InputDecoration(
@@ -107,7 +106,7 @@ class SignInScreen extends StatelessWidget {
                 ),
                 obscureText: true,
               ),
-              const SizedBox(height: 24.0),
+              const SizedBox(height: 12.0),
               ElevatedButton(
                 onPressed: () {
                   // Implement registration logic
