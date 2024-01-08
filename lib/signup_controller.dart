@@ -1,3 +1,4 @@
+import 'package:final_app/authentication_repository.dart';
 import 'package:final_app/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -10,9 +11,10 @@ class SignUpController extends GetxController {
   final BloodGroup = TextEditingController() ;
   final ContactNumber = TextEditingController() ;
   final Age = TextEditingController() ;
+  final Email = TextEditingController() ;
   final Password = TextEditingController() ;
 
   void registerUser(String email,String password){
-
+    AuthenticationRepository.instance.createUserWithEmailAndPassword(email, password);
   }
 }
