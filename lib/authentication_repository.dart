@@ -21,8 +21,20 @@ class AuthenticationRepository extends GetxController {
     firebaseUser.bindStream(_auth.userChanges());
     ever(firebaseUser, _setInitialScreen);
   }
+
   _setInitialScreen(User? user){
     user == null ? Get.offAll(() => LandingPage()): Get.offAll(() => SplashScreen());
+  }
+
+  Future<void> phoneAuthentication(String ContactNumber) async{
+    _auth.verifyPhoneNumber(
+        verificationCompleted: (credentials) {
+
+        },
+        verificationFailed: (e){},
+        codeSent: (verificationID, resendToken){},
+        codeAutoRetrievalTimeout: (verificationID){},
+    );
   }
 
   Future<void> createUserWithEmailAndPassword(String email, String password) async{
