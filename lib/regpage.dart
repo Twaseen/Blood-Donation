@@ -89,6 +89,16 @@ class SignInScreen extends StatelessWidget {
               ),
               SizedBox(height: 15.0),
               TextFormField(
+                controller: controller.Email,
+                decoration: InputDecoration(
+                  icon: Icon(Icons.mail),
+                  labelText: 'Email',
+                  border: OutlineInputBorder(),
+                ),
+                obscureText: true,
+              ),
+              SizedBox(height: 15.0),
+              TextFormField(
                 controller: controller.Password,
                 decoration: InputDecoration(
                   icon: Icon(Icons.lock),
@@ -102,7 +112,7 @@ class SignInScreen extends StatelessWidget {
                 onPressed: () {
                   // Implement registration logic
                   if(_formKey.currentState!.validate()) {
-                    SignUpController.instance.registerUser()
+                    SignUpController.instance.registerUser(controller.Email.text.trim(),controller.Password.text.trim());
                   }
                 },
                 child: Text('Register'),

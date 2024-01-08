@@ -43,6 +43,15 @@ class SignUpScreen extends StatelessWidget {
               ),
               obscureText: true,
             ),
+            SizedBox(height: 20.0),
+            TextFormField(
+              decoration: InputDecoration(
+                icon: Icon(Icons.mail),
+                labelText: 'Email',
+                border: OutlineInputBorder(),
+              ),
+              obscureText: true,
+            ),
             SizedBox(height: 24.0),
             ElevatedButton(
               onPressed: () {
