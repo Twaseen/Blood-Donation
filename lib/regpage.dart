@@ -3,20 +3,8 @@ import 'package:final_app/signup_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:final_app/authentication_repository.dart';
-
-void main() {
-  runApp(BloodBankApp());
-}
-
-class BloodBankApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: SignInScreen(),
-      debugShowCheckedModeBanner: false,
-    );
-  }
-}
+import 'package:final_app/splash_screen.dart';
+import 'user_model.dart';
 
 class SignInScreen extends StatelessWidget {
   @override
@@ -42,12 +30,12 @@ class SignInScreen extends StatelessWidget {
                 child: Text(
                   'Create a new account',
                   style: TextStyle(
-                    fontSize: 18.0,
+                    fontSize: 15.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-              SizedBox(height: 12.0),
+              SizedBox(height: 10.0),
               TextFormField(
                 controller: controller.FullName,
                 decoration: const InputDecoration(
@@ -56,7 +44,7 @@ class SignInScreen extends StatelessWidget {
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 12.0),
+              SizedBox(height: 10.0),
               TextFormField(
                 controller: controller.BloodGroup,
                 decoration: InputDecoration(
@@ -65,7 +53,7 @@ class SignInScreen extends StatelessWidget {
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 12.0),
+              SizedBox(height: 10.0),
               TextFormField(
                 controller: controller.ContactNumber,
                 decoration: InputDecoration(
@@ -75,7 +63,7 @@ class SignInScreen extends StatelessWidget {
                 ),
                 keyboardType: TextInputType.phone,
               ),
-              SizedBox(height: 12.0),
+              SizedBox(height: 10.0),
               TextFormField(
                 controller: controller.Age,
                 decoration: InputDecoration(
@@ -85,7 +73,7 @@ class SignInScreen extends StatelessWidget {
                 ),
                 keyboardType: TextInputType.datetime,
               ),
-              SizedBox(height: 12.0),
+              SizedBox(height: 10.0),
               TextFormField(
                 controller: controller.Email,
                 decoration: InputDecoration(
@@ -95,7 +83,7 @@ class SignInScreen extends StatelessWidget {
                 ),
                 obscureText: true,
               ),
-              SizedBox(height: 12.0),
+              SizedBox(height: 10.0),
               TextFormField(
                 controller: controller.Password,
                 decoration: InputDecoration(
@@ -105,7 +93,7 @@ class SignInScreen extends StatelessWidget {
                 ),
                 obscureText: true,
               ),
-              const SizedBox(height: 12.0),
+              const SizedBox(height: 10.0),
               ElevatedButton(
                 onPressed: () {
                   // Implement registration logic
@@ -115,7 +103,7 @@ class SignInScreen extends StatelessWidget {
                 },
                 child: Text('Register'),
               ),
-              const SizedBox(height: 12.0),
+              const SizedBox(height: 10.0),
               TextButton(
                 onPressed: () {
                   Navigator.push(
