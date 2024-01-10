@@ -2,6 +2,7 @@ import 'package:final_app/signup.dart';
 import 'package:final_app/signup_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:final_app/authentication_repository.dart';
 
 void main() {
   runApp(BloodBankApp());
@@ -41,12 +42,12 @@ class SignInScreen extends StatelessWidget {
                 child: Text(
                   'Create a new account',
                   style: TextStyle(
-                    fontSize: 15.0,
+                    fontSize: 18.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-              SizedBox(height: 10.0),
+              SizedBox(height: 12.0),
               TextFormField(
                 controller: controller.FullName,
                 decoration: const InputDecoration(
@@ -55,7 +56,7 @@ class SignInScreen extends StatelessWidget {
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 10.0),
+              SizedBox(height: 12.0),
               TextFormField(
                 controller: controller.BloodGroup,
                 decoration: InputDecoration(
@@ -64,7 +65,7 @@ class SignInScreen extends StatelessWidget {
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 10.0),
+              SizedBox(height: 12.0),
               TextFormField(
                 controller: controller.ContactNumber,
                 decoration: InputDecoration(
@@ -73,16 +74,8 @@ class SignInScreen extends StatelessWidget {
                   border: OutlineInputBorder(),
                 ),
                 keyboardType: TextInputType.phone,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Enter a phone number';
-                  } else if (value.length != 11 || !value.startsWith('01')) {
-                    return 'Enter a valid 11-digit phone number starting with 01';
-                  }
-                  return null;
-                },
               ),
-              SizedBox(height: 10.0),
+              SizedBox(height: 12.0),
               TextFormField(
                 controller: controller.Age,
                 decoration: InputDecoration(
@@ -92,7 +85,7 @@ class SignInScreen extends StatelessWidget {
                 ),
                 keyboardType: TextInputType.datetime,
               ),
-              SizedBox(height: 10.0),
+              SizedBox(height: 12.0),
               TextFormField(
                 controller: controller.Email,
                 decoration: InputDecoration(
@@ -101,14 +94,8 @@ class SignInScreen extends StatelessWidget {
                   border: OutlineInputBorder(),
                 ),
                 obscureText: true,
-                validator: (value) {
-                  if (value == null || !value.contains('@')) {
-                    return 'Enter a valid email address';
-                  }
-                  return null;
-                },
               ),
-              SizedBox(height: 10.0),
+              SizedBox(height: 12.0),
               TextFormField(
                 controller: controller.Password,
                 decoration: InputDecoration(
@@ -117,35 +104,25 @@ class SignInScreen extends StatelessWidget {
                   border: OutlineInputBorder(),
                 ),
                 obscureText: true,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Enter a password';
-                  } else if (value.length < 4) {
-                    return 'Password must contain at least 4 characters';
-                  }
-                  return null;
-                },
               ),
-              const SizedBox(height: 10.0),
+              const SizedBox(height: 12.0),
               ElevatedButton(
                 onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    SignUpController.instance.registerUser(
-                      controller.Email.text.trim(),
-                      controller.Password.text.trim(),
-                    );
+                  // Implement registration logic
+                  if(_formKey.currentState!.validate()) {
+                    SignUpController.instance.registerUser(controller.Email.text.trim(),controller.Password.text.trim());
                   }
                 },
                 child: Text('Register'),
               ),
-              const SizedBox(height: 10.0),
+              const SizedBox(height: 12.0),
               TextButton(
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => SignUpScreen()),
-                  ); // Navigate to login screen
-
+                  );
+                  // Navigate to login screen
                 },
                 child: Text('Already have an account? Login'),
               )
