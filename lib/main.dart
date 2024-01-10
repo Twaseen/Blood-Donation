@@ -7,6 +7,8 @@ import 'package:final_app/splash_screen.dart';
 import '1stpage.dart';
 import 'package:get/get.dart';
 import 'package:final_app/theme.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
