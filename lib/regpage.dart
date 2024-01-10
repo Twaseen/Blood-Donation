@@ -1,7 +1,5 @@
 import 'package:final_app/signup.dart';
 import 'package:final_app/signup_controller.dart';
-import 'package:final_app/splash_screen.dart';
-import 'package:final_app/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:final_app/authentication_repository.dart';
@@ -21,8 +19,6 @@ class BloodBankApp extends StatelessWidget {
 }
 
 class SignInScreen extends StatelessWidget {
-  String? _selectedAccountType;
-
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(SignUpController());
@@ -114,25 +110,7 @@ class SignInScreen extends StatelessWidget {
                 onPressed: () {
                   // Implement registration logic
                   if(_formKey.currentState!.validate()) {
-
-                    //email and password authentication
-                    //SignUpController.instance.registerUser(controller.Email.text.trim(),controller.Password.text.trim());
-
-                    //phone no authentication
-                    //SignUpController.instance.phoneAunthentication(controller.ContactNumber.text.trim());
-
-
-                    final user = UserModel(
-                        FullName: controller.FullName.text.trim(),
-                        BloodGroup: controller.BloodGroup.text.trim(),
-                        ContactNumber: controller.ContactNumber.text.trim(),
-                        Age: controller.Age.text.trim(),
-                        Email: controller.Email.text.trim(),
-                        Password: controller.Password.text.trim()
-                    );
-                    //SignUpController.instance.registerUser(controller.Email.text.trim(),controller.Password.text.trim());
-                    SignUpController.instance.createUser(user);
-
+                    SignUpController.instance.registerUser(controller.Email.text.trim(),controller.Password.text.trim());
                   }
                 },
                 child: Text('Register'),
