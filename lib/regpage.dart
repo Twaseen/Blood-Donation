@@ -1,3 +1,4 @@
+import 'package:final_app/signup.dart';
 import 'package:final_app/signup_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -140,7 +141,11 @@ class SignInScreen extends StatelessWidget {
               const SizedBox(height: 10.0),
               TextButton(
                 onPressed: () {
-                  // Navigate to login screen
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignUpScreen()),
+                  ); // Navigate to login screen
+
                 },
                 child: Text('Already have an account? Login'),
               )
