@@ -4,13 +4,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:final_app/authentication_repository.dart';
 import 'package:final_app/splash_screen.dart';
-import 'user_model.dart';
+import 'package:final_app/user_repository.dart';
+import 'package:final_app/user_model.dart';
 
 class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(SignUpController());
     final _formKey = GlobalKey<FormState>();
+    final user = UserModel(
+        FullName: controller.FullName.text.trim(),
+        BloodGroup: controller.BloodGroup.text.trim(),
+        ContactNumber: controller.ContactNumber.text.trim(),
+        Age: controller.Age.text.trim(),
+        Email: controller.Email.text.trim(),
+        Password: controller.Password.text.trim()
+    );
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.red[400],
@@ -81,7 +90,7 @@ class SignInScreen extends StatelessWidget {
                   labelText: 'Email',
                   border: OutlineInputBorder(),
                 ),
-                obscureText: true,
+                obscureText: false,
               ),
               SizedBox(height: 10.0),
               TextFormField(
@@ -98,7 +107,10 @@ class SignInScreen extends StatelessWidget {
                 onPressed: () {
                   // Implement registration logic
                   if(_formKey.currentState!.validate()) {
-                    SignUpController.instance.registerUser(controller.Email.text.trim(),controller.Password.text.trim());
+                   SignUpController.instance.createUser(user);
+                   Navigator.pushReplacement(
+                       context,
+                       MaterialPageRoute(builder: (context) =>SignUpScreen()),
                   }
                 },
                 child: Text('Register'),
@@ -108,7 +120,7 @@ class SignInScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => SignUpScreen()),
+                    MaterialPageRoute(builder: (context) => SplashScreen()),
                   );
                   // Navigate to login screen
                 },
