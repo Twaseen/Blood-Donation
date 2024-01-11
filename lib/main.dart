@@ -16,7 +16,6 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform).
   then((value) => Get.put(AuthenticationRepository()));
-
   runApp(const MyApp());
 }
 
