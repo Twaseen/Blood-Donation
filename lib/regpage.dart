@@ -26,7 +26,8 @@ class SignInScreen extends StatelessWidget {
         title: Text('Blood Bank Registration'),
       ),
       backgroundColor: Colors.white,
-      body: Padding(
+       body: SingleChildScrollView(
+       child: Padding(
         padding: EdgeInsets.all(10.0),
         child: Form(
           key: _formKey,
@@ -52,6 +53,7 @@ class SignInScreen extends StatelessWidget {
                   labelText: 'Name',
                   border: OutlineInputBorder(),
                 ),
+
               ),
               SizedBox(height: 10.0),
               TextFormField(
@@ -108,9 +110,6 @@ class SignInScreen extends StatelessWidget {
                   // Implement registration logic
                   if(_formKey.currentState!.validate()) {
                    SignUpController.instance.createUser(user);
-                   Navigator.pushReplacement(
-                       context,
-                       MaterialPageRoute(builder: (context) =>SignUpScreen()),
                   }
                 },
                 child: Text('Register'),
@@ -120,7 +119,7 @@ class SignInScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => SplashScreen()),
+                    MaterialPageRoute(builder: (context) => SignUpScreen()),
                   );
                   // Navigate to login screen
                 },
@@ -130,6 +129,8 @@ class SignInScreen extends StatelessWidget {
           ),
         ),
       ),
+      )
     );
   }
 }
+
