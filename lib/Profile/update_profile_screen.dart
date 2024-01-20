@@ -1,12 +1,16 @@
+import 'package:final_app/profile_controller.dart';
+import 'package:final_app/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'Widgets/profile_menu.dart';
+import 'package:get/get.dart';
 
 class UpdateProfileScreen extends StatelessWidget {
   const UpdateProfileScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ProfileController());
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -18,108 +22,143 @@ class UpdateProfileScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Stack(
-                children: [
+          child: FutureBuilder(
+            future: controller.getUserData(),
+            builder: (context, snapshot) {
+              if(snapshot.connectionState == ConnectionState.done) {
+                if (snapshot.hasData){
+                  UserModel userData=snapshot.data as UserModel;
+                  return Column(children: [
+                  Stack(
+                  children: [
                   SizedBox(
-                    width: 120,
+                  width: 120,
                     height: 120,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
                       child: Image.asset("assets/profile.jpg"), // Replace "assets/image1.jpg" with the actual path
                     ),
                   ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: Container(
-                      width: 35,
-                      height: 35,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: Colors.yellow,
-                      ),
-                      child: const Icon(
-                        Icons.camera,
-                        color: Colors.black,
-                        size: 20,
-                      ),
-                    ),
-                  ),
-                ],
+              Positioned(
+              bottom: 0,
+              right: 0,
+              child: Container(
+              width: 35,
+              height: 35,
+              decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(100),
+              color: Colors.yellow,
+              ),
+              child: const Icon(
+              Icons.camera,
+              color: Colors.black,
+              size: 20,
+              ),
+              ),
+              ),
+              ],
               ),
               const SizedBox(height: 50),
               Form(
-                child: Column(
-                  children: [
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        labelText: "FullName",
-                        prefixIcon: Icon(Icons.man),
-                      ),
-                    ),
-                    const SizedBox(height: 40 - 20),
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        labelText: "Email",
-                        prefixIcon: Icon(Icons.mail),
-                      ),
-                    ),
-                    const SizedBox(height: 40 - 20),
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        labelText: "Phone Number",
-                        prefixIcon: Icon(Icons.phone),
-                      ),
-                    ),
-                    const SizedBox(height: 40 - 20),
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        labelText: "Password",
-                        prefixIcon: Icon(Icons.fingerprint),
-                      ),
-                    ),
-                    const SizedBox(height: 40),
-                    SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () => Get.to(() => const UpdateProfileScreen()),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.yellow,
-                          side: BorderSide.none,
-                          shape: const StadiumBorder(),
-                        ),
-                        child: const Text(
-                          "Edit Profile",
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 40),
-                    Row(
-                      children: [
-                        Text.rich(
-                          TextSpan(
-                            text: "Joined",
-                            style: TextStyle(fontSize: 12),
-                            children: [
-                              TextSpan(
-                                text: "JoinedAt",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+              child: Column(
+              children: [
+              TextFormField(
+              decoration: const InputDecoration(
+              labelText: "FullName",
+              prefixIcon: Icon(Icons.person),
               ),
-            ],
+              ),
+              const SizedBox(height: 40 - 20),
+                TextFormField(
+                  initialValue: userData.BloodGroup,
+                  decoration: const InputDecoration(
+                    labelText: "Blood Group",
+                    prefixIcon: Icon(Icons.local_hospital),
+                  ),
+                ),
+                const SizedBox(height: 40 - 20),
+              TextFormField(
+                initialValue: userData.ContactNumber,
+              decoration: const InputDecoration(
+              labelText: "Phone Number",
+              prefixIcon: Icon(Icons.phone),
+              ),
+              ),
+              const SizedBox(height: 40 - 20),
+                TextFormField(
+                  initialValue: userData.Age,
+                  decoration: const InputDecoration(
+                    labelText: "Age",
+                    prefixIcon: Icon(Icons.event),
+                  ),
+                ),
+                const SizedBox(height: 40 - 20),
+                TextFormField(
+                  initialValue: userData.Email,
+                  decoration: const InputDecoration(
+                    labelText: "Email",
+                    prefixIcon: Icon(Icons.mail),
+                  ),
+                ),
+                const SizedBox(height: 40 - 20),
+              TextFormField(
+              decoration: const InputDecoration(
+              labelText: "Password",
+              prefixIcon: Icon(Icons.lock),
+              ),
+              ),
+              const SizedBox(height: 40),
+              SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+              onPressed: () => Get.to(() => const UpdateProfileScreen()),
+              style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.yellow,
+              side: BorderSide.none,
+              shape: const StadiumBorder(),
+              ),
+              child: const Text(
+              "Edit Profile",
+              style: TextStyle(color: Colors.black),
+              ),
+              ),
+              ),
+              const SizedBox(height: 40),
+              Row(
+              children: [
+              Text.rich(
+              TextSpan(
+              text: "Joined",
+              style: TextStyle(fontSize: 12),
+              children: [
+              TextSpan(
+              text: "JoinedAt",
+              style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 12,
+              ),
+              ),
+              ],
+              ),
+              ),
+              ],
+              ),
+              ],
+              ),
+              ),
+              ],);
+                }
+                else if (snapshot.hasError) {
+                  return Center(child: Text(snapshot.error.toString()));
+                }
+                else {
+                  return const Center(child: Text('Something went wrong'));
+                }
+              }
+              else {
+                return const Center(child: CircularProgressIndicator());
+              }
+            }
           ),
         ),
       ),

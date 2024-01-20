@@ -13,8 +13,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  Get.put(AuthenticationRepository());
+  Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
+      .then((value) => Get.put(AuthenticationRepository()));
   runApp(const MyApp());
 }
 
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.lighttheme,
       darkTheme: AppTheme.darktheme,
       themeMode: ThemeMode.system,
-      home: dashboard(), // Assuming that your dashboard is the starting screen
+      home: SplashScreen(), // Assuming that your dashboard is the starting screen
     );
   }
 }

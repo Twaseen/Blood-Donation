@@ -1,3 +1,6 @@
+import 'dart:html';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -30,4 +33,19 @@ class UserModel {
       "Password":Password,
     };
   }
+
+  factory UserModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document){
+    final data =document.data()!;
+    return UserModel(
+        id:document.id,
+        FullName: data["FullName"],
+        BloodGroup: data["BloodGroup"],
+        ContactNumber: data["ContactNumber"],
+        Age: data["Age"],
+        Email: data["Email"],
+        Password: data["Password"]
+    );
+  }
+
+
 }

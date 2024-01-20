@@ -17,13 +17,13 @@ import 'package:final_app/dashboard.dart';
 class AuthenticationRepository extends GetxController {
   static AuthenticationRepository get instance => Get.find();
 
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  late Rx<User?> firebaseUser = Rx<User?>(null); // Change 19
+  final _auth = FirebaseAuth.instance;
+  late final Rx<User?> firebaseUser;
 
-  AuthenticationRepository() {
-    firebaseUser.bindStream(_auth.userChanges());
-    ever(firebaseUser, _setInitialScreen);
-  }
+  // AuthenticationRepository() {
+  //   firebaseUser.bindStream(_auth.userChanges());
+  //   ever(firebaseUser, _setInitialScreen);
+  // }
 
   @override
   void onReady() {
@@ -69,6 +69,7 @@ class AuthenticationRepository extends GetxController {
   Future<void> createUserWithEmailAndPassword(String email, String password) async{
     try{
       await _auth.createUserWithEmailAndPassword(email: email, password: password);
+      firebaseUser.value !=null ? Get.offAll(()=> Dashboard()): Get.to(() => LandingPage());
     } on FirebaseAuthException catch(e){
       final ex = SignUpWithEmailAndPasswordFailure.code(e.code);
       print('FIREBASE AUTH EXCEPTION -${ex.message}');
@@ -83,7 +84,6 @@ class AuthenticationRepository extends GetxController {
   Future<void> loginWithEmailAndPassword(String email, String password) async{
     try{
       await _auth.signInWithEmailAndPassword(email: email, password: password);
-      firebaseUser.value !=null ? Get.offAll(()=> Dashboard()): Get.to(() => LandingPage());
     } on FirebaseAuthException catch(e){
     } catch (_){
 
