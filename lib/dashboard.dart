@@ -1,7 +1,5 @@
-
 import 'package:flutter/material.dart';
-
-
+//import 'chat_screen.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -52,7 +50,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   trailing: CircleAvatar(
                     radius: 30,
-                    // Use your preferred user icon here
                     child: Icon(Icons.person, color: Colors.white),
                   ),
                 ),
@@ -73,8 +70,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 crossAxisCount: 2,
-                crossAxisSpacing: 20, // Adjust as needed
-                mainAxisSpacing: 20, // Adjust as needed
+                crossAxisSpacing: 20,
+                mainAxisSpacing: 20,
                 children: [
                   itemDashboard(
                     'Search',
@@ -102,9 +99,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     Colors.deepOrange,
                   ),
                   itemDashboard(
-                    'Help ',
-                    Icons.help,
+                    'Chat',
+                    Icons.chat,
                     Colors.deepOrange,
+                    // onTap: () {
+                    //   Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(builder: (context) => ChatScreen()),
+                    //   );
+                    // },
                   ),
                 ],
               ),
@@ -115,37 +118,45 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget itemDashboard(String title, IconData iconData, Color background) =>
-      Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: [
-            BoxShadow(
-              offset: const Offset(0, 5),
-              color: Theme.of(context).primaryColor.withOpacity(.2),
-              spreadRadius: 2,
-              blurRadius: 5,
-            )
-          ],
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: background,
-                shape: BoxShape.circle,
+  Widget itemDashboard(
+      String title,
+      IconData iconData,
+      Color background, {
+        VoidCallback? onTap,
+      }) =>
+      GestureDetector(
+        onTap: onTap,
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                offset: const Offset(0, 5),
+                color: Theme.of(context).primaryColor.withOpacity(.2),
+                spreadRadius: 2,
+                blurRadius: 5,
+              )
+            ],
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: background,
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(iconData, color: Colors.white),
               ),
-              child: Icon(iconData, color: Colors.white),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              title,
-              style: Theme.of(context).textTheme.subtitle1,
-            )
-          ],
+              const SizedBox(height: 8),
+              Text(
+                title,
+                style: Theme.of(context).textTheme.subtitle1,
+              )
+            ],
+          ),
         ),
       );
 }
