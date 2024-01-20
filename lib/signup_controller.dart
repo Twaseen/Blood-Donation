@@ -10,26 +10,25 @@ import 'package:final_app/regpage.dart';
 
 class SignUpController extends GetxController {
   static SignUpController get instance => Get.find();
-  final FullName = TextEditingController() ;
-  final BloodGroup = TextEditingController() ;
-  final ContactNumber = TextEditingController() ;
-  final Age = TextEditingController() ;
-  final Email = TextEditingController() ;
-  final Password = TextEditingController() ;
+  final FullName = TextEditingController();
+  final BloodGroup = TextEditingController();
+  final ContactNumber = TextEditingController();
+  final Age = TextEditingController();
+  final Email = TextEditingController();
+  final Password = TextEditingController();
 
-  final userRepo= Get.put(UserRepository());
+  final userRepo = Get.put(UserRepository());
 
-  void registerUser(String email,String password){
-    AuthenticationRepository.instance.createUserWithEmailAndPassword(email, password);
+  void registerUser(String email, String password) {
+    String? error = AuthenticationRepository.instance.createUserWithEmailAndPassword(email, password) as String?;
+    if (error != null) {
+      Get.showSnackbar(GetSnackBar(message: error.toString()));
+    }
   }
 
-  // void phoneAunthentication(String ContactNumber){
-  //   AuthenticationRepository.instance.phoneAuthentication(ContactNumber);
-  // }
-  //
-  void createUser(UserModel user) async{
-     await userRepo.createUser(user);
-     registerUser(user.Email, user.Password);
-     Get.to(() => SplashScreen());
-   }
+  Future<void> createUser(UserModel user) async {
+    await userRepo.createUser(user);
+    registerUser(user.Email, user.Password);
+    // Get.to(() => SplashScreen()); // Comment this line as it navigates to SplashScreen instead of Dashboard
+  }
 }
