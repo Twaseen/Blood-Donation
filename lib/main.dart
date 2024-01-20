@@ -1,3 +1,4 @@
+import 'package:final_app/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:final_app/authentication_repository.dart';
 import 'package:final_app/dashboard.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
       themeMode: ThemeMode.system,
-      home: const Dashboard(),
+      home: SplashScreen(),
     );
   }
 }
