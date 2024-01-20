@@ -1,4 +1,5 @@
 import 'package:final_app/authentication_repository.dart';
+import 'package:final_app/dashboard.dart';
 import 'package:final_app/firebase_options.dart';
 import 'package:final_app/splash_screen.dart';
 import 'package:final_app/user_model.dart';
@@ -33,6 +34,6 @@ class SignUpController extends GetxController {
   Future<void> createUser(UserModel user) async{
      await userRepo.createUser(user);
      registerUser(user.Email, user.Password);
-     Get.to(() => SplashScreen());
+     Get.to(() => Dashboard());
    }
 }

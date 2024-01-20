@@ -10,6 +10,7 @@ import 'package:final_app/signup_controller.dart';
 import 'package:final_app/1stpage.dart';
 import 'package:final_app/user_repository.dart';
 import 'signup_controller.dart';
+import 'package:final_app/dashboard.dart';
 
 
 
@@ -32,7 +33,7 @@ class AuthenticationRepository extends GetxController {
   }
 
   _setInitialScreen(User? user){
-    user == null ? Get.offAll(() => LandingPage()): Get.offAll(() => SplashScreen());
+    user == null ? Get.offAll(() => LandingPage()): Get.offAll(() => Dashboard());
   }
 
   // Future<void> phoneAuthentication(String ContactNumber) async{
@@ -82,7 +83,7 @@ class AuthenticationRepository extends GetxController {
   Future<void> loginWithEmailAndPassword(String email, String password) async{
     try{
       await _auth.signInWithEmailAndPassword(email: email, password: password);
-      firebaseUser.value !=null ? Get.offAll(()=> SplashScreen()): Get.to(() => LandingPage());
+      firebaseUser.value !=null ? Get.offAll(()=> Dashboard()): Get.to(() => LandingPage());
     } on FirebaseAuthException catch(e){
     } catch (_){
 

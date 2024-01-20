@@ -1,7 +1,6 @@
-import 'package:final_app/Profile/Widgets/profile_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+import 'Widgets/profile_menu.dart';
 
 class UpdateProfileScreen extends StatelessWidget {
   const UpdateProfileScreen({Key? key}) : super(key: key);
@@ -11,8 +10,10 @@ class UpdateProfileScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            onPressed: () => Get.back(), icon: const Icon(Icons.smart_button)),
-        title: Text("EditProfile", style: Theme.of(context).textTheme.headline4),
+          onPressed: () => Get.back(),
+          icon: const Icon(Icons.smart_button),
+        ),
+        title: Text("EditProfile", style: TextStyle(fontSize: 24)),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -36,8 +37,9 @@ class UpdateProfileScreen extends StatelessWidget {
                       width: 35,
                       height: 35,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),
-                          color: Colors.yellow),
+                        borderRadius: BorderRadius.circular(100),
+                        color: Colors.yellow,
+                      ),
                       child: const Icon(
                         Icons.camera,
                         color: Colors.black,
@@ -53,37 +55,45 @@ class UpdateProfileScreen extends StatelessWidget {
                   children: [
                     TextFormField(
                       decoration: const InputDecoration(
-                          label: Text("FullName"), prefixIcon: Icon(Icons.man)),
+                        labelText: "FullName",
+                        prefixIcon: Icon(Icons.man),
+                      ),
                     ),
                     const SizedBox(height: 40 - 20),
                     TextFormField(
                       decoration: const InputDecoration(
-                          label: Text("Email"), prefixIcon: Icon(Icons.mail)),
+                        labelText: "Email",
+                        prefixIcon: Icon(Icons.mail),
+                      ),
                     ),
                     const SizedBox(height: 40 - 20),
                     TextFormField(
                       decoration: const InputDecoration(
-                          label: Text("Phone Number"),
-                          prefixIcon: Icon(Icons.phone)),
+                        labelText: "Phone Number",
+                        prefixIcon: Icon(Icons.phone),
+                      ),
                     ),
                     const SizedBox(height: 40 - 20),
                     TextFormField(
                       decoration: const InputDecoration(
-                          label: Text("Password"),
-                          prefixIcon: Icon(Icons.fingerprint)),
+                        labelText: "Password",
+                        prefixIcon: Icon(Icons.fingerprint),
+                      ),
                     ),
                     const SizedBox(height: 40),
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () =>
-                            Get.to(() => const UpdateProfileScreen()),
+                        onPressed: () => Get.to(() => const UpdateProfileScreen()),
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.yellow,
-                            side: BorderSide.none,
-                            shape: const StadiumBorder()),
-                        child: const Text("Edit Profile",
-                            style: TextStyle(color: Colors.black)),
+                          backgroundColor: Colors.yellow,
+                          side: BorderSide.none,
+                          shape: const StadiumBorder(),
+                        ),
+                        child: const Text(
+                          "Edit Profile",
+                          style: TextStyle(color: Colors.black),
+                        ),
                       ),
                     ),
                     const SizedBox(height: 40),
@@ -95,15 +105,17 @@ class UpdateProfileScreen extends StatelessWidget {
                             style: TextStyle(fontSize: 12),
                             children: [
                               TextSpan(
-                                  text: "JoinedAt",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 12))
+                                text: "JoinedAt",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12,
+                                ),
+                              ),
                             ],
                           ),
-                        )
+                        ),
                       ],
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -114,3 +126,4 @@ class UpdateProfileScreen extends StatelessWidget {
     );
   }
 }
+
