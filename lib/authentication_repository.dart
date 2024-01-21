@@ -19,7 +19,7 @@ class AuthenticationRepository extends GetxController {
   static AuthenticationRepository get instance => Get.find();
 
   final _auth = FirebaseAuth.instance;
-  late final Rx<User> firebaseUser;
+  late final Rx<User?> firebaseUser;
 
   // AuthenticationRepository() {
   //   firebaseUser.bindStream(_auth.userChanges());
