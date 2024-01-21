@@ -1,5 +1,7 @@
+// dashboard.dart
 import 'package:flutter/material.dart';
-//import 'chat_screen.dart';
+import 'package:final_app/post.dart';
+import 'package:final_app/feed.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -82,6 +84,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     'Post',
                     Icons.post_add,
                     Colors.deepOrange,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => FeedScreen()),
+                      );
+                    },
                   ),
                   itemDashboard(
                     'Donor',
