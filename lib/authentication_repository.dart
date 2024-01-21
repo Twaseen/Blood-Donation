@@ -1,6 +1,7 @@
 import 'package:final_app/firebase_options.dart';
 import 'package:final_app/signupfaillure.dart';
 import 'package:final_app/splash_screen.dart';
+import 'package:final_app/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class AuthenticationRepository extends GetxController {
   static AuthenticationRepository get instance => Get.find();
 
   final _auth = FirebaseAuth.instance;
-  late final Rx<User?> firebaseUser;
+  late final Rx<User> firebaseUser;
 
   // AuthenticationRepository() {
   //   firebaseUser.bindStream(_auth.userChanges());
@@ -92,3 +93,5 @@ class AuthenticationRepository extends GetxController {
 
   Future<void> logout() async => await _auth.signOut();
 }
+
+
