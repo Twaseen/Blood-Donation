@@ -36,4 +36,10 @@ class ProfileController extends GetxController {
     }
   }
 
+  Future<List<UserModel>> getAllUsers() async => await _userRepo.allUser();
+
+  updateRecord(UserModel user) async {
+    await _userRepo.updateUserRecord(user);
+  }
+
 }
