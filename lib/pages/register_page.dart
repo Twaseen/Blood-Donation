@@ -2,7 +2,7 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_app/auth.dart';
 import 'package:final_app/pages/login_page.dart';
-import 'package:final_app/util/shared_functions.dart';
+import 'package:final_app/util/shared_functios.dart';
 import 'package:final_app/widgets/password_text_field.dart';
 import 'package:final_app/widgets/text_text_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
