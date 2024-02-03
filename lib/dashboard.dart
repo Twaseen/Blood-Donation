@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+//import 'chat_screen.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -102,12 +102,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     'Chat',
                     Icons.chat,
                     Colors.deepOrange,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) =>Dashboard()),
-                      );
-                    },
+                    // onTap: () {
+                    //   Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(builder: (context) => ChatScreen()),
+                    //   );
+                    // },
                   ),
                 ],
               ),
