@@ -1,4 +1,5 @@
 import 'package:final_app/authentication_repository.dart';
+import 'package:final_app/dashboard.dart';
 import 'package:final_app/firebase_options.dart';
 import 'package:final_app/splash_screen.dart';
 import 'package:final_app/user_model.dart';
@@ -19,9 +20,10 @@ class SignUpController extends GetxController {
 
   final userRepo= Get.put(UserRepository());
 
-  void registerUser(String email,String password){
-    String? error = AuthenticationRepository.instance.createUserWithEmailAndPassword(email, password) as String?;
-    if (error != null){
+  Future<void> registerUser(String email, String password) async {
+    try {
+      await AuthenticationRepository.instance.createUserWithEmailAndPassword(email, password);
+    } catch (error) {
       Get.showSnackbar(GetSnackBar(message: error.toString()));
     }
   }
@@ -30,9 +32,13 @@ class SignUpController extends GetxController {
   //   AuthenticationRepository.instance.phoneAuthentication(ContactNumber);
   // }
   //
-  Future<void> createUser(UserModel user) async{
-     await userRepo.createUser(user);
-     registerUser(user.Email, user.Password);
-     Get.to(() => SplashScreen());
-   }
+  Future<void> createUser(UserModel user) async {
+    try {
+      await userRepo.createUser(user);
+      await registerUser(user.Email, user.Password);
+      Get.off(() => Dashboard());
+    } catch (error) {
+      Get.showSnackbar(GetSnackBar(message: 'Registration failed: $error'));
+    }
+  }
 }

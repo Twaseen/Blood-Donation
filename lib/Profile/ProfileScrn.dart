@@ -1,20 +1,17 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'Widgets/profile_menu.dart';
 import 'package:final_app/Profile/update_profile_screen.dart';
+import 'package:final_app/splash_screen.dart';
+import 'package:final_app/1stpage.dart';
 import 'package:final_app/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
-import 'package:final_app/splash_screen.dart';
-import 'package:get/get.dart';
-//import '1stpage.dart';
-import 'Widgets/profile_menu.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
-    //var alternate_sign_out;
-
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -23,14 +20,12 @@ class ProfileScreen extends StatelessWidget {
         ),
         title: Text(
           "Profile",
-          style: Theme.of(context).textTheme.labelSmall,
+          // Use default text style
         ),
         actions: [
           IconButton(
             onPressed: () {},
-            icon: Icon(
-              isDark ? Icons.sunny : Icons.nightlight,
-            ),
+            icon: Icon(Icons.sunny), // Adjust the icon as needed
           ),
         ],
       ),
@@ -71,11 +66,11 @@ class ProfileScreen extends StatelessWidget {
               const SizedBox(height: 10),
               Text(
                 "ProfileHeading",
-                style: Theme.of(context).textTheme.titleSmall,
+                // Use default text style
               ),
               Text(
                 "ProfileSubHeading",
-                style: Theme.of(context).textTheme.titleSmall,
+                // Use default text style
               ),
               const SizedBox(height: 20),
               SizedBox(
