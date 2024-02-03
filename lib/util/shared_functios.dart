@@ -1,61 +1,77 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
-class TextTextField extends StatefulWidget {
-  final TextEditingController controller;
-  final String hintText;
-  final Function(String)? inputCheck;
-  const TextTextField({
-    required this.controller,
-    required this.hintText,
-    this.inputCheck,
-    super.key,
-  });
-
-  @override
-  State<TextTextField> createState() => TextTextFieldState();
-}
-
-class TextTextFieldState extends State<TextTextField> {
-  String? errorText;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      child: TextFormField(
-        controller: widget.controller,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        decoration: InputDecoration(
-          hintText: widget.hintText,
-          errorText: errorText,
-          fillColor: Colors.white,
-          filled: true,
-          contentPadding: const EdgeInsets.only(left: 15),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15),
+Row buildOrWithSection() {
+  return Row(
+    children: [
+      Expanded(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: const Divider(
+            color: Colors.black,
+            thickness: 2,
           ),
         ),
-        validator: (updatedText) => validateInput(updatedText),
       ),
-    );
-  }
+      const Text(
+        "Or with",
+        style: TextStyle(
+          fontSize: 18,
+        ),
+      ),
+      Expanded(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: const Divider(
+            color: Colors.black,
+            thickness: 2,
+          ),
+        ),
+      ),
+    ],
+  );
+}
 
-  // Return the string
-  String? validateInput(String? updatedText) {
-    // If the updated text is null
-    // make it empty so function will be able to scan it
-    errorText = null;
-    updatedText ??= "";
+Widget buildLoginByDifferentKey(String logoPath, String label, Color fillColor,
+    Color textColor, Function onTap, bool haveBorder) {
+  return SizedBox(
+    height: 50,
+    child: FilledButton.icon(
+      icon: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Image.asset(
+            logoPath,
+            fit: BoxFit.cover,
+          ),
+        ],
+      ),
+      label: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            label,
+            style: TextStyle(fontSize: 20, color: textColor),
+          ),
+        ],
+      ),
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(fillColor),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+            side: haveBorder == true
+                ? const BorderSide(color: Colors.black)
+                : const BorderSide(color: Colors.white),
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+      ),
+      onPressed: () => onTap,
+    ),
+  );
+}
 
-    String error = "";
-    if (widget.inputCheck != null) {
-      error = widget.inputCheck!(updatedText);
-    }
-
-    if (error.isEmpty) return null;
-
-    return error;
-  }
+String checkEmail(String updatedText) {
+  if (!EmailValidator.validate(updatedText)) return "Invalid E-mail";
+  return "";
 }
