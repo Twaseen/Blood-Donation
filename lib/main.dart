@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:final_app/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:final_app/authentication_repository.dart';
@@ -5,10 +6,20 @@ import 'package:final_app/dashboard.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  Get.put(AuthenticationRepository());
+  Platform.isAndroid
+      ? await Firebase.initializeApp(
+      options: const FirebaseOptions(
+        apiKey: 'AIzaSyA3XEjGX9Mj-ECxaXu1FC4sMGsLd9s1RrE',
+        appId: '1:141638815415:android:95c020fd78fb305d328732',
+        messagingSenderId: '141638815415',
+        projectId: 'fir-connect-f48e7',
+      )
+  )
+      : await Firebase.initializeApp();
+  //Get.put(AuthenticationRepository());
   runApp(const MyApp());
 }
 
@@ -23,7 +34,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
       themeMode: ThemeMode.system,
-      home: const Dashboard(),
+      home: SplashScreen(),
     );
     import 'package:final_app/splash_screen.dart';
     import 'package:flutter/material.dart';
