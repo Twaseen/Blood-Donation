@@ -12,12 +12,10 @@ class UpdateProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ProfileController());
-
-
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () => Get.back(),
+          onPressed: () {},
           icon: const Icon(Icons.smart_button),
         ),
         title: Text("EditProfile", style: TextStyle(fontSize: 24)),
