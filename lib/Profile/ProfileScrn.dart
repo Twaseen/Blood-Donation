@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../dashboard.dart';
 import 'Widgets/profile_menu.dart';
 import 'package:final_app/Profile/update_profile_screen.dart';
 import 'package:final_app/splash_screen.dart';
@@ -15,19 +16,18 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => Dashboard()),
+          );},
           icon: const Icon(Icons.chevron_left_sharp),
+
         ),
         title: Text(
           "Profile",
           // Use default text style
         ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.sunny), // Adjust the icon as needed
-          ),
-        ],
+
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -41,7 +41,7 @@ class ProfileScreen extends StatelessWidget {
                     height: 120,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
-                      child: Image.asset("assets/profile.jpg"), // Replace "assets/image1.jpg" with the actual path
+                      child: Image.asset("assets/facebook_logo.png"), // Replace "assets/image1.jpg" with the actual path
                     ),
                   ),
                   Positioned(
@@ -63,22 +63,18 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 10),
-              Text(
-                "ProfileHeading",
-                // Use default text style
-              ),
-              Text(
-                "ProfileSubHeading",
-                // Use default text style
-              ),
+
               const SizedBox(height: 20),
               SizedBox(
                 width: 200,
                 child: ElevatedButton(
-                  onPressed: () => Get.to(() => const UpdateProfileScreen()),
+                  onPressed: () {
+                    Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => UpdateProfileScreen()),
+                  );},
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.yellow,
+                    primary: Colors.blueGrey,
                     onPrimary: Colors.black,
                     side: BorderSide(color: Colors.black),
                   ),
@@ -86,17 +82,20 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 30),
+
+
               const Divider(),
               const SizedBox(height: 10),
               // MENU
+
               ProfileMenuWidget(
-                title: "Settings",
-                icon: Icons.settings,
+                title: "Full name",
+                icon: Icons.person_add,
                 onPress: () {},
               ),
               ProfileMenuWidget(
-                title: "User name",
-                icon: Icons.person,
+                title: "Age",
+                icon: Icons.perm_identity_sharp,
                 onPress: () {},
               ),
               ProfileMenuWidget(
@@ -104,19 +103,29 @@ class ProfileScreen extends StatelessWidget {
                 icon: Icons.phone_android,
                 onPress: () {},
               ),
-              const Divider(color: Colors.grey),
-              const SizedBox(height: 10),
+
               ProfileMenuWidget(
                 title: "Blood Group",
                 icon: Icons.bloodtype,
                 onPress: () {},
               ),
               ProfileMenuWidget(
+                title: 'Address',
+                icon: Icons.home,
+                onPress: () {},
+              ),
+              const Divider(color: Colors.grey),
+              const SizedBox(height: 10),
+              ProfileMenuWidget(
                 title: "LogOut",
                 icon: Icons.logout,
-                textColor: Colors.red,
+                textColor: Colors.pink,
                 endIcon: false,
-                onPress: () {},
+                onPress: () {                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) =>LandingPage()),
+
+                );},
               ),
             ],
           ),
